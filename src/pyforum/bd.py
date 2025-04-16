@@ -1,13 +1,16 @@
 from pyforum.utilisateur import Utilisateur
+from pyforum.forum import Forum
+from pyforum.commentaire import Commentaire
+from pyforum.publication import Publication
 
 
 class BD:
     def __init__(self):
         self.utilisateurs: list[Utilisateur] = []
-        self.forums = []
-        self.publications = []
-        self.commentaires = []
-        self.utilisateurs_forums = {}
+        self.forums: list[Forum] = []
+        self.publications: list[Commentaire] = []
+        self.commentaires: list[Publication] = []
+        self.utilisateurs_forums = {} 
         print("Base de données initialisée.")
 
     def creer_utilisateur(self, username: str) -> Utilisateur:
