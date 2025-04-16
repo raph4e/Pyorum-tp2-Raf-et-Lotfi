@@ -4,11 +4,10 @@ class Forum():
 
     __id_count = 0
 
-    def __init__(self, nomForum, descriptionForum, listePublications, listeUtilisateurs, db: BD):
+    def __init__(self, nomForum, descriptionForum, listePublications, db: BD):
         self.nomForum = nomForum
         self.descriptionForum = descriptionForum
         self.listePublications = listePublications
-        self.listeUtilisateurs = listeUtilisateurs
         self.idForum = Forum.__id_count
         Forum.__id_count += 1
         self.db = db

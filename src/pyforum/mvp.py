@@ -54,6 +54,8 @@ def main():
             nomForum = input("Entrez le nom du forum")
             descriptionForum = input("Entrez une description du forum")
             listePublications = []
+
+            # Demande à l'utilisateur ses informations
             nomUtilisateurForum = input("Entrez votre nom d'utilisateur")
 
             # Vérifie si l'utilisateur existe dans la base de données
@@ -85,13 +87,15 @@ def main():
             print("\nCréation d'une publication...")
             titrePublication = input("Entrez le titre de la publication")
             contenuPublication = input("Entrez le contenu de la publication")
+            dateCreation = input("Entrez la date d'ajourd'hui")
+            listeCommentaires = []
+            identifiantAuteur = None
+            identifiantForumAuteur = None
+
+            # Demande à l'utilisateur ses informations
             nomUtilisateurPublication = input("Entrez votre nom d'utilisateur")
             nomForumPublication = input("Entrez le nom du forum dont vous souhaiter faire une publication")
-            listeCommentaires = []
-            auteurPublication = None
-            votePublication = []
-            nombreDeVotePublication = 0
-            
+
 
             # Vérifie si l'utilisateur existe dans la base de données
             utilisateur_trouve = None
@@ -109,21 +113,21 @@ def main():
 
             if utilisateur_trouve and forum_trouve:
                 # Vérifie si l'utilisateur est membre du forum
-                if utilisateur_trouve not in forum_trouve.listeUtilisateurs:
+                if forum_trouve not in utilisateur_trouve.listeDeForums:
                     print("Vous devez être membre de ce forum pour publier.")
                     continue
 
-                # Ajoute l'utilisateur comme l'auteur de la publication
-                auteurPublication = utilisateur_trouve
+                # Trouve l'identifiant de l'utilisateur
+                identifiantAuteur = utilisateur_trouve.idUtilisateur
+
+                # Trouve l'identifiant du forum
+                identifiantForumAuteur = forum_trouve.idForum
 
                 # Crée la publication
-                publication = Publication(titrePublication, contenuPublication, listeCommentaires, auteurPublication)
+                publication = Publication(titrePublication, contenuPublication,dateCreation, listeCommentaires, identifiantAuteur, identifiantForumAuteur)
 
                 # Sauvegarde la publication dans la base de données
                 bd1.creer_publication(publication)
-
-                # Ajoute la publication dans la liste de publication de l'auteur
-                utilisateur_trouve.listeDePublications.append(publication)
 
                 # Ajoute la publication au forum correspondant
                 forum_trouve.listePublications.append(publication)
@@ -138,12 +142,14 @@ def main():
             # Ajouter un commentaire
             print("\nAjouter un commentaire...")
             contenuCommentaire = input("Entrez le contenu du commentaire")
+            identifiantAuteur = None
+            identifiantPublication = None
+
+            # Demande à l'utilisateur ses informations
             nomUtilisateurCommentaire = input("Entrez votre nom d'utilisateur")
             nomForumCommentaire = input("Entrez le nom du forum dont vous souhaitez commenter")
             nomPublicationCommentaire = input("Entrez le titre de la publication dont vous souhaitez commenter")
-            auteurCommentaire = None
-            voteCommentaire = []
-            nombreDeVoteCommentaire = 0
+
 
 
             # Vérifie si l'utilisateur existe dans la base de données
@@ -169,21 +175,24 @@ def main():
 
             if utilisateur_trouve and forum_trouve and publication_trouve:
                 # Vérifie si l'utilisateur est membre du forum
-                if utilisateur_trouve not in forum_trouve.listeUtilisateurs:
+                if forum_trouve not in utilisateur_trouve.listeDeForums:
                     print("Vous devez être membre de ce forum pour publier.")
                     continue
+
+                # Trouve l'identifiant de l'utilisateur
+                identifiantAuteur = utilisateur_trouve.idUtilisateur
+
+                # Trouve l'identifiant de la publication concernée
+                identifiantPublication = publication_trouve.idPublication
 
                 # Ajoute l'utilisateur comme étant l'auteur du commentaire
                 auteurCommentaire = utilisateur_trouve
 
                 # Crée le commentaire
-                commentaire = Commentaire(contenuCommentaire, auteurCommentaire)
+                commentaire = Commentaire(contenuCommentaire, auteurCommentaire, identifiantAuteur, identifiantPublication)
 
                 # Sauvegarde le commentaire dans la base de données
                 bd1.creer_commentaire(commentaire)
-
-                # Ajoute le commentaire à la liste de commentaires de l'auteur
-                utilisateur_trouve.listeDeCommentaires.append(commentaire)
 
                 # Ajoute le commentaire à la publication correspondante
                 publication_trouve.listeCommentaires.append(commentaire)
@@ -215,8 +224,6 @@ def main():
                     break
 
             if utilisateur_trouve and forum_trouve:
-                # Ajoute l'utilisateur à la liste d'utilisateurs du forum correspondant
-                forum_trouve.listeUtilisateurs.append(utilisateur_trouve)
 
                 # Ajoute le forum correspondant à la liste de forum de l'utilisateur
                 utilisateur_trouve.listeDeForums.append(forum_trouve)

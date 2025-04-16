@@ -8,8 +8,8 @@ class BD:
     def __init__(self):
         self.utilisateurs: list[Utilisateur] = []
         self.forums: list[Forum] = []
-        self.publications: list[Commentaire] = []
-        self.commentaires: list[Publication] = []
+        self.publications: list[Publication] = []
+        self.commentaires: list[Commentaire] = []
         self.utilisateurs_forums = {} 
         print("Base de données initialisée.")
 
