@@ -1,1 +1,1 @@
-ID,titre,contenu,date_creation,ID_auteur,ID_forum
+titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur, new_id_publication

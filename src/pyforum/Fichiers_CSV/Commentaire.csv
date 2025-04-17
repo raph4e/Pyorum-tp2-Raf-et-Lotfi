@@ -1,1 +1,1 @@
-ID,ID_auteur,contenu_commentaire,id_publication
+contenu_commentaire, identifiantAuteur, identifiantPublication, new_id_commentaire

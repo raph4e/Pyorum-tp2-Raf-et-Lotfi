@@ -4,6 +4,7 @@ from pyforum.commentaire import Commentaire
 from pyforum.publication import Publication
 
 
+
 class BD:
     def __init__(self):
         self.utilisateurs: list[Utilisateur] = []
@@ -13,59 +14,94 @@ class BD:
         self.utilisateurs_forums = {} 
         print("Base de données initialisée.")
 
-    def creer_utilisateur(self, username: str) -> Utilisateur:
-        #                       ^^^^^^^^^^^^^^
-        #            # TODO:    Vous devez ajouter les autres paramètres requis
+    # Fonction pour créer un utilisateur
+    def creer_utilisateur(self, nomUtilisateur: str, adresseEmail: str, motDePasse: str, listeDeForums: list) -> Utilisateur:
 
         # Vérifier si l'utilisateur existe déjà
-        if username in [u.username for u in self.utilisateurs]:
-            print(f"[Simulé] L'utilisateur {username} existe déjà.")
+        if nomUtilisateur in [u.nomUtilisateur for u in self.utilisateurs]:
+            print(f"[Simulé] L'utilisateur {nomUtilisateur} existe déjà.")
             return
 
         # Créer un nouvel identifiant pour l'utilisateur
-        new_id = max([u.id for u in self.utilisateurs], default=0) + 1
+        new_id_utilisateur = max([u.new_id_utilisateur for u in self.utilisateurs], default=0) + 1
 
         # Instancier un nouvel utilisateur et l'ajouter à la liste
-        u = Utilisateur(new_id, username)
+        u = Utilisateur(new_id_utilisateur, nomUtilisateur, adresseEmail, motDePasse, listeDeForums)
         self.utilisateurs.append(u)
         print(f"[Simulé] Sauvegarde de l'utilisateur: {u}")
 
         # Retourner l'utilisateur créé
         return u
-
+    
+    # Fonction pour obtenir une instance utilisateur à partir de son nom
     def obtenir_utilisateur_par_nom(self, nom_utilisateur: str):
         for u in self.utilisateurs:
-            if u.username == nom_utilisateur:
+            if u.nomUtilisateur == nom_utilisateur:
                 return u
 
-    def creer_forum(self, nom):
-        #                ^^^^^^
-        #                Vous devez ajouter les autres paramètres requis
-        # TODO: Implanter la logique pour créer un forum
-        pass
+    # Fonction pour créer un forum
+    def creer_forum(self, nomForum, descriptionForum, listePublications):
 
-    def creer_publication(self, publication):
-        #                       ^^^^^^^^^^^
-        #                       Vous devez ajouter les autres paramètres requis
-        # TODO: Implanter la logique pour créer une publication
-        pass
+        # Vérifier si le forum existe déjà
+        if nomForum in [f.nomForum for f in self.forums]:
+            print(f"[Simulé] Le forum {nomForum} existe déjà.")
+            return
+        
+        # Créer un nouvel identifiant pour le forum
+        new_id_forum = max([f.new_id_forum for f in self.forums], default=0) + 1
 
-    def creer_commentaire(self, commentaire):
-        #                       ^^^^^^^^^^^
-        #                       Vous devez ajouter les autres paramètres requis
-        # TODO: Implanter la logique pour créer un commentaire
-        pass
+        # Instancier un nouveau forum et l'ajouter à la liste
+        f = Forum(new_id_forum, nomForum, descriptionForum, listePublications)
+        self.forums.append(f)
+        print(f"[Simulé] Sauvegarde du forum: {f}")
 
-    def obtenir_forum_par_nom(self, nom_forum):
-        # TODO: Implanter la logique pour chercher un forum à partir de son nom
-        pass
+        # Retourner le forum créé
+        return f
+    
+    # Fonction pour obtenir une instance forum à partir de son nom
+    def obtenir_forum_par_nom(self, nom_forum: str):
+        for f in self.forums:
+            if f.nomForum == nom_forum:
+                return f
 
+    # Fonction pour créer une publication
+    def creer_publication(self, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur):
+
+        # Vérifier si la publication existe déjà
+        if titrePublication in [p.titrePublication for p in self.publications]:
+            print(f"[Simulé] Le forum {titrePublication} existe déjà.")
+            return 
+        
+        # Créer un nouvel identifiant pour la publication
+        new_id_publication = max([p.new_id_publication for p in self.publications], default=0) + 1
+
+        # Instancier une nouvelle publication et l'ajouter à la liste
+        p = Publication(new_id_publication, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur)
+        self.publications.append(p)
+        print(f"[Simulé] Sauvegarde du forum: {p}")
+
+        # Retourner la publication créé
+        return p
+    
+    # Fonction pour obtenir une instance publication à partir de son titre 
     def obtenir_publication_par_titre(self, titre_publication):
-        # TODO: Implanter la logique pour chercher une publication à partir de son titre
-        pass
+        for p in self.publications:
+            if p.titrePublication == titre_publication:
+                return p
 
-    def mettre_a_jour_forum(self, forum):
-        #                         ^^^^^^
-        #                         Vous devez ajouter les autres paramètres requis
-        # TODO: Implanter la logique pour mettre à jour le forum et retourner le forum mis à jour
-        pass
+    # Fonction pour créer un commentaire
+    def creer_commentaire(self, contenuCommentaire, identifiantAuteur, identifiantPublication):
+        
+        # Créer un nouvel identifiant pour la publication
+        new_id_commentaire = max([c.new_id_commentaire for c in self.commentaires], default=0) + 1
+
+        # Instancier une nouvelle publication et l'ajouter à la liste
+        c = Commentaire(new_id_commentaire, contenuCommentaire, identifiantAuteur, identifiantPublication)
+        self.publications.append(c)
+        print(f"[Simulé] Sauvegarde du forum: {c}")
+
+        # Retourner la publication créé
+        return c
+
+
+

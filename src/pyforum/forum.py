@@ -2,18 +2,16 @@ from pyforum.bd import BD
 
 class Forum():
 
-    __id_count = 0
-
-    def __init__(self, nomForum, descriptionForum, listePublications, db: BD):
+    # Initialisation de l'instance forum
+    def __init__(self, nomForum, descriptionForum, listePublications, new_id_forum, db: BD):
         self.nomForum = nomForum
         self.descriptionForum = descriptionForum
         self.listePublications = listePublications
-        self.idForum = Forum.__id_count
-        Forum.__id_count += 1
+        self.new_id_forum = new_id_forum
         self.db = db
         
-
+    # Fonction qui affiche les informations du forum
     def __str__(self):
-        return f"{self.nomForum}, {self.descriptionForum}, {self.idForum}"
+        return f"{self.nomForum}, {self.descriptionForum}, {self.new_id_forum}"
 
    
