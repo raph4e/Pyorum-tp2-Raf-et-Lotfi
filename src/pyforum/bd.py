@@ -30,6 +30,10 @@ class BD:
         self.utilisateurs.append(u)
         print(f"[Simulé] Sauvegarde de l'utilisateur: {u}")
 
+        # Ajouter l'utilisateur au fichier csv Utilisateur.csv
+        with open("Utilisateur.csv", "a") as f:
+            f.write(f"{u.new_id_utilisateur},{u.nomUtilisateur},{u.adresseEmail},{u.motDePasse},{u.listeDeForums}\n")
+            
         # Retourner l'utilisateur créé
         return u
     
@@ -55,6 +59,10 @@ class BD:
         self.forums.append(f)
         print(f"[Simulé] Sauvegarde du forum: {f}")
 
+        # Ajouter le forum au fichier csv Forum.csv
+        with open("Forum.csv", "a") as f:
+            f.write(f"{f.new_id_forum},{f.nomForum},{f.descriptionForum},{f.listePublications}\n")
+
         # Retourner le forum créé
         return f
     
@@ -79,6 +87,9 @@ class BD:
         p = Publication(new_id_publication, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur)
         self.publications.append(p)
         print(f"[Simulé] Sauvegarde du forum: {p}")
+        # Ajouter la publication au fichier csv Publication.csv
+        with open("Publication.csv", "a") as f:
+            f.write(f"{p.new_id_publication},{p.titrePublication},{p.contenuPublication},{p.listeCommentaires},{p.dateCreation},{p.identifiantAuteur},{p.identifiantForumAuteur}\n")
 
         # Retourner la publication créé
         return p
@@ -99,6 +110,9 @@ class BD:
         c = Commentaire(new_id_commentaire, contenuCommentaire, identifiantAuteur, identifiantPublication)
         self.publications.append(c)
         print(f"[Simulé] Sauvegarde du forum: {c}")
+        # Ajouter le commentaire au fichier csv Commentaire.csv
+        with open("Commentaire.csv", "a") as f:
+            f.write(f"{c.new_id_commentaire},{c.contenuCommentaire},{c.identifiantAuteur},{c.identifiantPublication}\n")
 
         # Retourner la publication créé
         return c
