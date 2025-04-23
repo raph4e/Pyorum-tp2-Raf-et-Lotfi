@@ -1,9 +1,9 @@
-from pyforum.bd import BD
+
 
 class Publication():
 
     # Initialisation de l'instance publication
-    def __init__(self, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur, new_id_publication, db: BD):
+    def __init__(self, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur, new_id_publication):
         self.titrePublication = titrePublication
         self.contenuPublication = contenuPublication
         self.listeCommentaires = listeCommentaires
@@ -11,7 +11,6 @@ class Publication():
         self.identifiantAuteur = identifiantAuteur
         self.identifiantForumAuteur = identifiantForumAuteur
         self.new_id_publication = new_id_publication
-        self.db = db
 
         
     # Fonction qui affiche les informations de la publication

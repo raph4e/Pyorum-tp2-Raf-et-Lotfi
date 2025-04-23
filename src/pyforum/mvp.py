@@ -18,7 +18,7 @@ def afficher_menu():
 
 def main():
 
-    bd1 = BD(utilisateurs = [], forums = [], publications = [], commentaires = [], utilisateurs_forums = [] )
+    bd1 = BD( )
 
     while True:
         afficher_menu()
@@ -30,7 +30,7 @@ def main():
             print("Veuillez entrer une valeur valide")
             continue
 
-        if choix == '1':
+        if choix == 1:
             # Créer un utilisateur
             print("\nCréation d'un utilisateur...")
             nomUtilisateur = input("Entrez le nom d'utilisateur: ")
@@ -43,7 +43,7 @@ def main():
             print(f"L'utilisateur {nomUtilisateur} a été créé avec succès!")
 
 
-        elif choix == '2':
+        elif choix == 2:
             # Créer un forum
             print("\nCréation d'un forum...")
             nomForum = input("Entrez le nom du forum")
@@ -69,7 +69,7 @@ def main():
                 print("Nom d'utilisateur introuvable. Veuillez entrer un nom d'utilisateur valide ou vous créer un compte.")
 
 
-        elif choix == '3':
+        elif choix == 3:
             # Créer une publication
             print("\nCréation d'une publication...")
             titrePublication = input("Entrez le titre de la publication")
@@ -114,7 +114,7 @@ def main():
                 
 
 
-        elif choix == '4':
+        elif choix == 4:
             # Ajouter un commentaire
             print("\nAjouter un commentaire...")
             contenuCommentaire = input("Entrez le contenu du commentaire")
@@ -160,7 +160,7 @@ def main():
 
 
 
-        elif choix == '5':
+        elif choix == 5:
             # Joindre un forum
             print("\nJoindre un forum...")
             nomUtilisateurJoindreForum = input("Entrez votre nom d'utilisateur")
@@ -182,7 +182,7 @@ def main():
                 print("Nom d'utilisateur ou forum introuvable. Veuillez entrer un forum ou nom d'utilisateur valide.")
 
 
-        elif choix == '6':
+        elif choix == 6:
             # Quitter le programme
             print("\nMerci d'avoir utilisé PyForum. À bientôt!")
             break

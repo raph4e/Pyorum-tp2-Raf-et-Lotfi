@@ -30,10 +30,9 @@ class BD:
         self.utilisateurs.append(u)
         print(f"[Simulé] Sauvegarde de l'utilisateur: {u}")
 
-        # Ajouter l'utilisateur au fichier csv Utilisateur.csv
-        with open("Utilisateur.csv", "a") as f:
+        # Ajouter l'utilisateur au fichier csv Utilisateur.csv ET PAS LE CRÉER SEULEMENT MODIFIER
+        with open("src/pyforum/Fichiers_CSV/Utilisateur.csv", "a") as f:
             f.write(f"{u.new_id_utilisateur},{u.nomUtilisateur},{u.adresseEmail},{u.motDePasse},{u.listeDeForums}\n")
-            
         # Retourner l'utilisateur créé
         return u
     

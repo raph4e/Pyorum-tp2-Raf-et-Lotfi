@@ -1,14 +1,14 @@
-from pyforum.bd import BD
 
-class Commentaire(BD):
+
+class Commentaire():
 
     # Initialisation de l'instance commentaire     
-    def __init__(self, contenuCommentaire, identifiantAuteur, identifiantPublication, new_id_commentaire, db: BD):
+    def __init__(self, contenuCommentaire, identifiantAuteur, identifiantPublication, new_id_commentaire):
         self.contenuCommentaire = contenuCommentaire
-        self.db = db
         self.identifiantAuteur = identifiantAuteur
         self.new_id_commentaire = new_id_commentaire
         self.identifiantPublication = identifiantPublication
+        
 
         
     # Fonction qui affiche les informations du commentaire
