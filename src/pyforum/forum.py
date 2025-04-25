@@ -3,7 +3,7 @@
 class Forum():
 
     # Initialisation de l'instance forum
-    def __init__(self, nomForum, descriptionForum, listePublications, new_id_forum,):
+    def __init__(self, new_id_forum, nomForum, descriptionForum, listePublications):
         self.nomForum = nomForum
         self.descriptionForum = descriptionForum
         self.listePublications = listePublications

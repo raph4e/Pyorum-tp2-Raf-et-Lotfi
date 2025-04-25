@@ -3,7 +3,7 @@
 class Commentaire():
 
     # Initialisation de l'instance commentaire     
-    def __init__(self, contenuCommentaire, identifiantAuteur, identifiantPublication, new_id_commentaire):
+    def __init__(self, new_id_commentaire, contenuCommentaire, identifiantAuteur, identifiantPublication):
         self.contenuCommentaire = contenuCommentaire
         self.identifiantAuteur = identifiantAuteur
         self.new_id_commentaire = new_id_commentaire

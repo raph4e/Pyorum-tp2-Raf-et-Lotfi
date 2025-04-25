@@ -3,7 +3,7 @@
 class Publication():
 
     # Initialisation de l'instance publication
-    def __init__(self, titrePublication, contenuPublication, listeCommentaires, dateCreation, identifiantAuteur, identifiantForumAuteur, new_id_publication):
+    def __init__(self, new_id_publication, titrePublication, contenuPublication, dateCreation, identifiantAuteur, identifiantForumAuteur, listeCommentaires):
         self.titrePublication = titrePublication
         self.contenuPublication = contenuPublication
         self.listeCommentaires = listeCommentaires
