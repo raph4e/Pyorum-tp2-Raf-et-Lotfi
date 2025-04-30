@@ -7,7 +7,11 @@
 # Cela permet également d'importer la fonction main() dans d'autres modules
 # sans exécuter le programme.
 
-from pyforum.mvp import main
+#from pyforum.mvp import main
+from pyforum.mvp import afficher_menu
 
 if __name__ == '__main__':
-    main()
+    afficher_menu()
+
+
+
